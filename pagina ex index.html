@@ -1,0 +1,260 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Really del amor</title>
+    <!-- Tailwind CSS for modern responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .romantic-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        /* Floating background hearts animation */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        .heart-particle {
+            position: absolute;
+            bottom: -20px;
+            animation: floatUp 6s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Glassmorphism card effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        /* Pulse animation for main heart */
+        @keyframes softPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        .pulse-heart {
+            animation: softPulse 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-rose-400 via-pink-300 to-purple-400 min-h-screen flex flex-col items-center justify-center p-4 relative text-slate-800">
+
+    <div id="hearts-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+    <audio id="bg-music" loop>
+        <!-- Royalty-free soothing romantic ambient synth / music stream -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-ambient-111145.mp3" type="audio/mpeg">
+    </audio>
+
+    <main class="w-full max-w-md mx-auto z-10 my-6">
+        
+        <!-- Music Control Banner -->
+        <div class="glass-card mb-4 p-3 rounded-2xl shadow-lg flex items-center justify-between text-xs font-medium text-rose-700">
+            <div class="flex items-center gap-2">
+                <span class="text-lg animate-spin" id="music-icon">🎵</span>
+                <span>Música de fondo romántica</span>
+            </div>
+            <button onclick="toggleMusic()" id="music-btn" class="bg-rose-500 hover:bg-rose-600 text-white px-3 py-1.5 rounded-xl shadow transition active:scale-95">
+                Reproducir 🎶
+            </button>
+        </div>
+
+        <!-- Main Card -->
+        <div class="glass-card rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden border border-white/80">
+            
+            <!-- Top Heart Icon -->
+            <div class="flex justify-center mb-3">
+                <div class="text-5xl pulse-heart filter drop-shadow-md">💖</div>
+            </div>
+
+            <!-- Header Title -->
+            <h1 class="text-3xl md:text-4xl text-center romantic-font text-rose-600 mb-1 font-bold">Really del amor</h1>
+            <p class="text-center text-xs uppercase tracking-widest text-slate-500 mb-6 font-semibold">Para alguien que sigue en mi corazón</p>
+
+            <div class="bg-rose-50/80 rounded-2xl p-4 mb-6 border border-rose-100 shadow-inner text-center">
+                <h3 class="text-xs font-bold text-rose-500 uppercase tracking-wider mb-2">Tiempo desde que nuestros caminos se separaron</h3>
+                <div class="grid grid-cols-4 gap-2 text-rose-900 font-bold">
+                    <div class="bg-white/90 p-2 rounded-xl shadow-sm">
+                        <span id="days" class="text-xl block text-rose-600">0</span>
+                        <span class="text-[10px] uppercase text-slate-500">Días</span>
+                    </div>
+                    <div class="bg-white/90 p-2 rounded-xl shadow-sm">
+                        <span id="hours" class="text-xl block text-rose-600">0</span>
+                        <span class="text-[10px] uppercase text-slate-500">Horas</span>
+                    </div>
+                    <div class="bg-white/90 p-2 rounded-xl shadow-sm">
+                        <span id="minutes" class="text-xl block text-rose-600">0</span>
+                        <span class="text-[10px] uppercase text-slate-500">Min</span>
+                    </div>
+                    <div class="bg-white/90 p-2 rounded-xl shadow-sm">
+                        <span id="seconds" class="text-xl block text-rose-600">0</span>
+                        <span class="text-[10px] uppercase text-slate-500">Seg</span>
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-2 italic">Y cada segundo te sigo extrañando igual...</p>
+            </div>
+
+            <div class="space-y-3 mb-6 text-slate-700 text-sm leading-relaxed text-center bg-white/50 p-4 rounded-2xl border border-white">
+                <p class="font-medium text-rose-900">"Sé que las cosas pasaron, pero hay cosas que no se borran con el tiempo."</p>
+                <p>Yo sí te extraño, te amo y de verdad me importas. Hice esto porque quería que supieras que mi cariño por ti sigue intacto. 🥺❤️</p>
+            </div>
+
+            <div id="game-section" class="mb-4">
+                <h3 class="text-sm font-bold text-slate-700 text-center mb-3">💬 Respóndeme con sinceridad:</h3>
+                
+                <div id="question-box" class="space-y-2.5">
+                    <p id="question-text" class="text-center text-sm font-semibold text-rose-700 mb-3">¿Aún extrañas nuestros momentos juntxs?</p>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="handleAnswer('Sí, muchísimo 🥺')" class="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition transform active:scale-98 text-sm">
+                            Sí, muchísimo 🥺
+                        </button>
+                        <button onclick="handleAnswer('También te extraño 🤍')" class="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition transform active:scale-98 text-sm">
+                            También te extraño 🤍
+                        </button>
+                        <button onclick="handleAnswer('Hablemos por WhatsApp ✨')" class="w-full bg-white hover:bg-rose-50 text-rose-600 border border-rose-300 font-semibold py-3 px-4 rounded-xl shadow-sm transition transform active:scale-98 text-sm">
+                            Hablemos por WhatsApp ✨
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Result & WhatsApp sender container -->
+                <div id="result-box" class="hidden text-center space-y-4 py-2">
+                    <div class="bg-rose-100/80 p-3 rounded-2xl text-rose-800 text-sm font-medium border border-rose-200">
+                        Gracias por responder. Tu respuesta fue guardada con amor: <br>
+                        <strong id="chosen-answer" class="text-rose-600 text-base block mt-1"></strong>
+                    </div>
+                    <p class="text-xs text-slate-600">Haz clic en el siguiente botón para mandarme tu respuesta directo a mi WhatsApp:</p>
+                    <a id="whatsapp-link" href="#" target="_blank" class="block w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition transform active:scale-98 text-center text-sm flex items-center justify-center gap-2">
+                        <span>💬 Enviar respuesta por WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Note -->
+            <div class="text-center pt-2 border-t border-rose-100/60 mt-4">
+                <p class="text-[11px] text-slate-400">Hecho con todo mi corazón 💌</p>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            // Random emojis or heart symbols
+            const symbols = ['❤️', '💖', '✨', '🤍', '🌹', '💫'];
+            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            // Random horizontal position and size
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 16 + 14) + 'px';
+            
+            // Random animation duration
+            const duration = Math.random() * 3 + 4;
+            heart.style.animationDuration = duration + 's';
+            
+            container.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        setInterval(createHeart, 500);
+
+        let isPlaying = false;
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+
+        function toggleMusic() {
+            if (!isPlaying) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.textContent = 'Pausar ⏸️';
+                    musicIcon.classList.add('animate-spin');
+                }).catch(e => {
+                    console.log("Audio autoplay prevented or error:", e);
+                });
+            } else {
+                bgMusic.pause();
+                isPlaying = false;
+                musicBtn.textContent = 'Reproducir 🎶';
+                musicIcon.classList.remove('animate-spin');
+            }
+        }
+
+        // You can change this date to whatever date fits your story best (YYYY, MM-1, DD)
+        const separationDate = new Date(2025, 11, 15, 0, 0, 0); // Example date
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - separationDate;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                // Fallback if date is in future
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        function handleAnswer(answerText) {
+            document.getElementById('question-box').classList.add('hidden');
+            document.getElementById('result-box').classList.remove('hidden');
+            document.getElementById('chosen-answer').textContent = `"${answerText}"`;
+
+            // REPLACE THIS NUMBER WITH YOUR OWN WHATSAPP NUMBER (with country code, e.g., 521XXXXXXXXXX)
+            // If you don't put a number, you can replace 'YOUR_PHONE_NUMBER' with your 10-digit number.
+            const myPhoneNumber = "5215500000000"; 
+            
+            const message = encodeURIComponent(`Hola! Vi tu página "Really del amor" y mi respuesta es: ${answerText} 🤍`);
+            const whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${message}`;
+            
+            document.getElementById('whatsapp-link').href = whatsappUrl;
+
+            // Trigger music if not playing to make it even more emotional
+            if (!isPlaying) {
+                toggleMusic();
+            }
+        }
+    </script>
+</body>
+</html>
+```
